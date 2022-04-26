@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        :root{
+            background-color: rgb(26, 25, 25);
+        }
+
+        #create-button{
+            background-color: gold;
+            color: black;
+            width: 25%;
+            height: 10vh;
+            font-size: 300%;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #input-username{
+            background-color: black;
+            width: 15%;
+            height: 3vh;
+            position: absolute;
+            top: 28%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: white;
+        }
+
+        #apply-username{
+            background-color: gold;
+            color: black;
+            width: 10%;
+            height: 5vh;
+            font-size: 120%;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #input-roomName{
+            background-color: black;
+            width: 18%;
+            height: 4vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: white;            
+        }
+
+        @media (max-width: 450px){
+            #create-button{
+                background-color: gold;
+                color: black;
+                width: 54%;
+                height: 6vh;
+                font-size: 130%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            
+            #input-username{
+                background-color: black;
+                width: 40%;
+                height: 3vh;
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 20px;
+                color: white;
+            }
+            
+            #apply-username{
+                background-color: gold;
+                color: black;
+                width: 40%;
+                height: 5vh;
+                font-size: 110%;
+                position: absolute;
+                top: 28%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            #input-roomName{
+                background-color: black;
+                width: 45%;
+                height: 4vh;
+                position: absolute;
+                top: 42%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 20px;
+                color: white;
+            }
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <button id="create-button">Make a new room</button>
+    <input type="text" placeholder="Room name" id="input-roomName">
+    <input type="text" placeholder="Username" id="input-username">
+    <button id="apply-username">Apply username</button>    
+    <script>
+        let applyUsername = document.getElementById('apply-username')
+        let usernameInput = document.querySelector('#input-username')
+        applyUsername.addEventListener('click', () => {
+            if (usernameInput.value != ""){
+                localStorage.setItem('Username', usernameInput.value)   
+                usernameInput.value = ""
+            }
+        })
+
+        document.querySelector('#create-button').addEventListener('click', () => {
+            if(document.querySelector('#input-roomName').value != ""){
+                window.location.href = `/${document.querySelector('#input-roomName').value}`
+            }
+        })
+    </script>
+</body>
+</html>
