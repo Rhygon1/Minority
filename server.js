@@ -33,6 +33,7 @@ app.get('/pawned/:smth', (req, res) => {
         person: String(`${req.params.smth}`)
     })
     newQues.save()
+    res.send('Did it work owo')
 })
 
 mongoose.connect('mongodb+srv://Dhruv:gilbert130@cluster0.rcpc7.mongodb.net/Minority?retryWrites=true&w=majority')
