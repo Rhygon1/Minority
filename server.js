@@ -26,6 +26,13 @@ app.get('/:roomName', (req, res) => {
     res.sendFile(__dirname + '/public/room.html')
 })
 
+app.get('/pawned', (req, res) => {
+    const newQues = new cusQues({
+        options: String(new Date())
+    })
+    newQues.save()
+})
+
 mongoose.connect('mongodb+srv://Dhruv:gilbert130@cluster0.rcpc7.mongodb.net/Minority?retryWrites=true&w=majority')
     .then((result) => server.listen(port))
 
