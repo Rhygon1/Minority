@@ -14,7 +14,8 @@ const mongoose = require('mongoose')
 
 const schema = mongoose.Schema;
 const questionSchema = new schema({
-    options: String
+    options: String,
+    person: String
 })
 const cusQues = mongoose.model('possibleQuestions', questionSchema)
 
@@ -26,9 +27,10 @@ app.get('/:roomName', (req, res) => {
     res.sendFile(__dirname + '/public/room.html')
 })
 
-app.get('/pawned', (req, res) => {
+app.get('/pawned/:smth', (req, res) => {
     const newQues = new cusQues({
-        options: String(new Date())
+        options: String(new Date()),
+        person: String(`${req.params.smth}`)
     })
     newQues.save()
 })
@@ -88,7 +90,8 @@ class Room{
                     this.gameQuestions.forEach(ques => {
                         if (!responses.includes(String(ques)) && !questions.includes(ques)){
                             const newQues = new cusQues({
-                                options: String(ques)
+                                options: String(ques),
+                                person: String(JSON.stringify(this.users))
                             })
                             newQues.save()
                         }
