@@ -30,7 +30,7 @@ const homeRouter = require("./routes/home")
 
 app.use("", homeRouter)
 
-const roomRouter = require("./routes/home")
+const roomRouter = require("./routes/room")
 
 app.use("", roomRouter)
 
