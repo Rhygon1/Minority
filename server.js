@@ -7,10 +7,12 @@ const io = require("socket.io")(server, {
       methods: ["GET", "POST"]
     }
   });
-  
+
 const cors = require('cors')
 const port = process.env.PORT || 3000
+
 app.use(cors())
+app.set('view engine', 'ejs')
 
 const mongoose = require('mongoose')
 
@@ -24,29 +26,13 @@ const cusQues = mongoose.model('possibleQuestions', questionSchema)
 mongoose.connect('mongodb+srv://Dhruv:gilbert130@cluster0.rcpc7.mongodb.net/Minority?retryWrites=true&w=majority')
     .then((result) => server.listen(port))
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/home.html')
-})
+const homeRouter = require("./routes/home")
 
-app.get('/:roomName', (req, res) => {
-    res.sendFile(__dirname + '/public/room.html')
-})
+app.use("", homeRouter)
 
-app.get('/css/home.css', (req, res) => {
-    res.sendFile(__dirname + '/public/css/home.css')
-})
+const roomRouter = require("./routes/home")
 
-app.get('/css/room.css', (req, res) => {
-    res.sendFile(__dirname + '/public/css/room.css')
-})
-
-app.get('/js/home.js', (req, res) => {
-    res.sendFile(__dirname + '/public/js/home.js')
-})
-
-app.get('/js/room.js', (req, res) => {
-    res.sendFile(__dirname + '/public/js/room.js')
-})
+app.use("", roomRouter)
 
 app.get('/pawned/:smth', (req, res) => {
     const newQues = new cusQues({
