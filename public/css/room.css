@@ -1,0 +1,284 @@
+:root {
+  background-color: rgb(26, 25, 25);
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0%;
+}
+
+#input-username {
+  background-color: black;
+  width: 15%;
+  height: 3vh;
+  margin-top: 6%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: white;
+}
+
+#apply-username {
+  background-color: gold;
+  color: black;
+  width: 10%;
+  height: 5vh;
+  font-size: 120%;
+  margin-top: 2%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#start-button {
+  background-color: gold;
+  color: black;
+  width: 25%;
+  height: 10vh;
+  font-size: 300%;
+  margin-top: 5%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#first-responses {
+  color: white;
+  position: absolute;
+  display: flex;
+  top: 61%;
+  left: 3%;
+  font-size: 200%;
+  flex-wrap: wrap;
+  gap: 35px;
+  width: 45.5vw;
+}
+
+#second-responses {
+  color: white;
+  position: absolute;
+  display: flex;
+  top: 61%;
+  left: 52%;
+  font-size: 200%;
+  flex-wrap: wrap;
+  gap: 35px;
+  width: 45.5vw;
+}
+
+.result-name {
+  margin-top: 0px;
+}
+
+#gg {
+  font-size: 800%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  left: 50%;
+  top: -10%;
+  color: gold;
+}
+
+#final-result-ul {
+  text-align: center;
+  list-style-type: none;
+  font-size: 400%;
+  margin-top: 13%;
+  color: white;
+}
+
+#continue {
+  background-color: gold;
+  color: black;
+  width: 25%;
+  height: 10vh;
+  font-size: 300%;
+  position: absolute;
+  top: 90%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+}
+
+#score {
+  color: white;
+  font-size: 300%;
+  margin-left: 87%;
+  display: none;
+}
+
+.custom-options-wrapper {
+  width: 100vw;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.custom-word {
+  margin-bottom: 5%;
+  width: 60px;
+  background-color: black;
+  height: 150%;
+  color: white;
+  font-size: 150%;
+}
+
+#custom-words-p {
+  width: 100vw;
+  margin-left: 1%;
+  margin-top: 2%;
+  font-size: 300%;
+  color: gold;
+  text-align: center;
+}
+
+.onlineplayers {
+  margin: 0%;
+  width: 100vw;
+  margin-top: 5px;
+  color: white;
+  font-size: 200%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.name {
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 450px) {
+  :root {
+    overflow-x: hidden;
+  }
+
+  #start-button {
+    background-color: gold;
+    color: black;
+    width: 54%;
+    height: 6vh;
+    font-size: 130%;
+    margin-top: 14%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #input-username {
+    background-color: black;
+    width: 40%;
+    height: 3vh;
+    margin-top: 20%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+  }
+
+  #apply-username {
+    background-color: gold;
+    color: black;
+    width: 45%;
+    height: 5vh;
+    font-size: 110%;
+    margin-top: 5%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #first-responses {
+    color: white;
+    position: absolute;
+    display: flex;
+    top: 63%;
+    left: 3%;
+    font-size: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 45.5vw;
+  }
+
+  #second-responses {
+    color: white;
+    position: absolute;
+    display: flex;
+    top: 63%;
+    left: 52%;
+    font-size: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 45.5vw;
+  }
+
+  #gg {
+    font-size: 350%;
+    margin-top: 25%;
+    text-align: center;
+    color: gold;
+  }
+
+  #final-result-ul {
+    margin-left: -15%;
+    list-style-type: none;
+    font-size: 200%;
+    margin-top: 30%;
+  }
+
+  #continue {
+    background-color: gold;
+    color: black;
+    width: 50%;
+    height: 10vh;
+    font-size: 150%;
+    position: absolute;
+    top: 90%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+  }
+
+  #score {
+    color: white;
+    font-size: 200%;
+    margin-left: 60%;
+    display: none;
+  }
+
+  .custom-options-wrapper {
+    display: flex;
+    margin-left: 6%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-top: 13%;
+  }
+
+  .custom-word {
+    margin-bottom: 5%;
+    width: 40%;
+    background-color: black;
+    height: 150%;
+    color: white;
+    font-size: 150%;
+  }
+
+  #custom-words-p {
+    margin-left: -2%;
+    width: 100vw;
+    margin-top: 8%;
+    font-size: 200%;
+    color: gold;
+    text-align: center;
+  }
+
+  .onlineplayers {
+    margin-top: 0px;
+    color: white;
+    font-size: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .name {
+    margin-right: 6px;
+    margin-left: 6px;
+    margin-bottom: 1px;
+  }
+}
