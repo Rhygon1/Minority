@@ -2,19 +2,18 @@ const express = require("express");
 const app = express()
 const http = require('http');
 const server = http.createServer(app)
+const port = process.env.PORT || 3000
+
+const cors = require('cors')
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(cors())
+
 const io = require("socket.io")(server, {
     cors: {
       methods: ["GET", "POST"]
     }
   });
-
-const cors = require('cors')
-const port = process.env.PORT || 3000
-
-app.use(cors())
-app.set('view engine', 'ejs')
-
-app.use(express.static('public'))
 
 const mongoose = require('mongoose')
 
@@ -29,11 +28,9 @@ mongoose.connect('mongodb+srv://Dhruv:gilbert130@cluster0.rcpc7.mongodb.net/Mino
     .then((result) => server.listen(port))
 
 const homeRouter = require("./routes/home")
-
-app.use("", homeRouter)
-
 const roomRouter = require("./routes/room")
 
+app.use("", homeRouter)
 app.use("", roomRouter)
 
 app.get('/pawned/:smth', (req, res) => {
@@ -44,8 +41,6 @@ app.get('/pawned/:smth', (req, res) => {
     newQues.save()
     res.send('Did it work owo')
 })
-
-let questions = [["roti", "baguette"], ["Gandhi", "Hitler"], ['Pcm', "Commerce"], ['North korea', 'South korea'], ["Messi", "Ronaldo"], ["Anime", "IRL"], ["Einstein", "Siddhant"], ["Putin", "Trump"], ["Football", "Soccer"], ["Football", "Cricket"], ["Kohli", "Dhoni"], ["Death", "Taxes"], ["Mandella", "Sarri"], ["Pewds", "Mrbeast"], ["Dream", "Techno"]]
 
 class Room{
     constructor(users, roomName){
@@ -63,6 +58,7 @@ class Room{
 
     newGame(socket, customWords){
         if(!this.running){ 
+            let questions = [["roti", "baguette"], ["Gandhi", "Hitler"], ['Pcm', "Commerce"], ['North korea', 'South korea'], ["Messi", "Ronaldo"], ["Anime", "IRL"], ["Einstein", "Siddhant"], ["Putin", "Trump"], ["Football", "Soccer"], ["Football", "Cricket"], ["Kohli", "Dhoni"], ["Death", "Taxes"], ["Mandella", "Sarri"], ["Pewds", "Mrbeast"], ["Dream", "Techno"]]
             this.gameQuestions = [...customWords]
             let len = this.gameQuestions.length
             for(let i=0; i<(10-len); i++){
