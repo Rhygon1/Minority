@@ -7,9 +7,11 @@ const io = require("socket.io")(server, {
       methods: ["GET", "POST"]
     }
   });
+  
 const cors = require('cors')
 const port = process.env.PORT || 3000
 app.use(cors())
+
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema;
@@ -19,12 +21,31 @@ const questionSchema = new schema({
 })
 const cusQues = mongoose.model('possibleQuestions', questionSchema)
 
+mongoose.connect('mongodb+srv://Dhruv:gilbert130@cluster0.rcpc7.mongodb.net/Minority?retryWrites=true&w=majority')
+    .then((result) => server.listen(port))
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/home.html')
 })
 
 app.get('/:roomName', (req, res) => {
     res.sendFile(__dirname + '/public/room.html')
+})
+
+app.get('/css/home.css', (req, res) => {
+    res.sendFile(__dirname + '/public/css/home.css')
+})
+
+app.get('/css/room.css', (req, res) => {
+    res.sendFile(__dirname + '/public/css/room.css')
+})
+
+app.get('/js/home.js', (req, res) => {
+    res.sendFile(__dirname + '/public/js/home.js')
+})
+
+app.get('/js/room.js', (req, res) => {
+    res.sendFile(__dirname + '/public/js/room.js')
 })
 
 app.get('/pawned/:smth', (req, res) => {
@@ -35,9 +56,6 @@ app.get('/pawned/:smth', (req, res) => {
     newQues.save()
     res.send('Did it work owo')
 })
-
-mongoose.connect('mongodb+srv://Dhruv:gilbert130@cluster0.rcpc7.mongodb.net/Minority?retryWrites=true&w=majority')
-    .then((result) => server.listen(port))
 
 let questions = [["roti", "baguette"], ["Gandhi", "Hitler"], ['Pcm', "Commerce"], ['North korea', 'South korea'], ["Messi", "Ronaldo"], ["Anime", "IRL"], ["Einstein", "Siddhant"], ["Putin", "Trump"], ["Football", "Soccer"], ["Football", "Cricket"], ["Kohli", "Dhoni"], ["Death", "Taxes"], ["Mandella", "Sarri"], ["Pewds", "Mrbeast"], ["Dream", "Techno"]]
 
