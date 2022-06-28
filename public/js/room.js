@@ -1,4 +1,4 @@
-let socket = io(`http://minoritygame.herokuapp.com/`)
+let socket = io(`https://minoritygame.herokuapp.com/`)
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-+";
