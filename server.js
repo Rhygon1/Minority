@@ -73,15 +73,7 @@ class Room{
             io.to(this.roomName).emit('NewGameServer')
             socket.broadcast.to(this.roomName).emit('remHost')
 
-            let randQuestion = this.gameQuestions[Math.floor(Math.random()*this.gameQuestions.length)]
-            this.amountOfQuestions++
-            io.to(this.roomName).emit('newQuestion', randQuestion)
-            this.gameQuestions.splice(this.gameQuestions.indexOf(randQuestion), 1, )
-            this.running = true
-            this.currentResponses = [[], []]
-            this.currentResSocId = [[], []]
-            this.publishedResults = false
-            this.currentQuestion = randQuestion
+            this.ReqNewQues(socket)
             this.finalResults = []
             
             cusQues.find()
@@ -111,9 +103,9 @@ class Room{
             this.users[socket.id] = [username, 0]
         }
         if (this.running){
-            socket.emit('newQuestion', this.currentQuestion)
+            socket.emit('newQuestion', this.currentQuestion, this.amountOfQuestions)
             if (this.publishedResults){
-                socket.emit('results', this.currentResponses)
+                socket.emit('results', this.currentResponses, this.amountOfQuestions)
             }
         }
         let players = []
@@ -135,20 +127,14 @@ class Room{
             this.currentResSocId[1].push(socket.id)
         }
         if (Object.keys(this.users).length == (this.currentResponses[0].length + this.currentResponses[1].length)){
-            io.to(this.roomName).emit('results', this.currentResponses, this.amountOfQuestions)
-            if(this.currentResponses[0].length > this.currentResponses[1].length){
-                this.currentResSocId[1].forEach(user => { io.to(user).emit('incScore'); this.users[user][1]++ })
-            } else if(this.currentResponses[1].length > this.currentResponses[0].length){
-                this.currentResSocId[0].forEach(user => { io.to(user).emit('incScore'); this.users[user][1]++ })
-            }
-            this.publishedResults = true
+            this.ReqResults()
         }
     }
 
     ReqNewQues(socket){
         let randQuestion = this.gameQuestions[Math.floor(Math.random()*this.gameQuestions.length)]
         this.amountOfQuestions++
-        io.to(this.roomName).emit('newQuestion', randQuestion)
+        io.to(this.roomName).emit('newQuestion', randQuestion, this.amountOfQuestions)
         this.gameQuestions.splice(this.gameQuestions.indexOf(randQuestion), 1, )
         this.running = true
         this.currentResponses = [[], []]
@@ -160,10 +146,13 @@ class Room{
     ReqResults(){
         io.to(this.roomName).emit('results', this.currentResponses, this.amountOfQuestions)
         if(this.currentResponses[0].length > this.currentResponses[1].length){
-            this.currentResSocId[1].forEach(user => { io.to(user).emit('incScore'); this.users[user][1]++ })
+            this.currentResSocId[1].forEach(user => { this.users[user][1]++ })
         } else if(this.currentResponses[1].length > this.currentResponses[0].length){
-            this.currentResSocId[0].forEach(user => { io.to(user).emit('incScore'); this.users[user][1]++ })
+            this.currentResSocId[0].forEach(user => { this.users[user][1]++ })
         }
+        Object.keys(this.users).forEach(user => {
+            io.to(user).emit('setScore', this.users[user][1], this.amountOfQuestions)
+        })        
         this.publishedResults = true
     }
 

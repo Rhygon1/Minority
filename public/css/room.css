@@ -100,7 +100,7 @@ body {
 #score {
   color: white;
   font-size: 300%;
-  margin-left: 87%;
+  margin-left: 75%;
   display: none;
 }
 
@@ -236,8 +236,9 @@ body {
 
   #score {
     color: white;
-    font-size: 200%;
-    margin-left: 60%;
+    font-size: 130%;
+    margin-top: 10%;
+    margin-left: 65%;
     display: none;
   }
 
