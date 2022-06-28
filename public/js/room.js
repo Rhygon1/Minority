@@ -1,4 +1,4 @@
-let socket = io("https://minoritygame.herokuapp.com/")
+let socket = io(`http://minoritygame.herokuapp.com/`)
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-+";
@@ -81,9 +81,9 @@ socket.on('setPlayerNames', players => {
     }
 })
 
-socket.on('newQuestion', (options) => {
+socket.on('newQuestion', (options, amountOfQuestions) => {
     document.getElementById('score').style.display = 'block'
-    document.getElementById('score').innerHTML = `Score: ${score}`
+    document.getElementById('score').innerHTML = `Round: ${amountOfQuestions}/10 Score: ${score}`
     answered = false
     document.querySelectorAll('.option-button').forEach(button => {
         button.remove()
@@ -231,9 +231,9 @@ socket.on('results', (responses, amountOfQuestions) => {
     }
 })
 
-socket.on('incScore', () => {
-    score++
-    document.getElementById('score').innerHTML = `Score: ${score}`
+socket.on('setScore', (s, amountOfQuestions) => {
+    score = s
+    document.getElementById('score').innerHTML = `Round: ${amountOfQuestions}/10 Score: ${score}`
 })
 
 socket.on('finalResult', results => {
